@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InstaCaption AI - Cybernetic Instagram Copywriter</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Generate 10 highly engaging, high-converting Instagram captions instantly. Powered by advanced Cognitive AI Cores. Copy captions with structured hooks, CTA, and hashtag packs.">
+  <meta name="keywords" content="Instagram caption generator, AI copywriter, small business marketing, social media scheduler, Nvidia NIM, Cybernetic copywriter">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=3">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="app-container tab-sidebar">
+    
+    <!-- Mobile Navigation Tabs -->
+    <div class="mobile-tabs" id="mobile-tabs-nav">
+      <button type="button" class="mobile-tab active" data-tab="sidebar">
+        <i data-lucide="sliders"></i>
+        <span>Brand Profile</span>
+      </button>
+      <button type="button" class="mobile-tab" data-tab="dashboard">
+        <i data-lucide="sparkles"></i>
+        <span>Captions</span>
+        <span class="count-badge" id="mobile-badge" style="display: none;">10</span>
+      </button>
+    </div>
+    
+    <!-- Sidebar / Configuration Controls -->
+    <aside class="sidebar">
+      <div class="logo-section">
+        <div class="logo-icon-wrapper">
+          <img src="img/logo.png" alt="InstaCaption AI Logo" class="brand-logo-img">
+        </div>
+        <div class="logo-text">
+          <h1>InstaCaption AI</h1>
+          <span>GENERATIVE COPYWRITING</span>
+        </div>
+      </div>
+
+      <!-- Diagnostics console (AI feel) -->
+      <div class="diagnostics-console">
+        <div class="console-header">
+          <span class="console-dot"></span>
+          <span class="console-title">COGNITIVE STATUS</span>
+        </div>
+        <div class="console-lines" id="console-lines">
+          <div>[SYS-CORE]: Cognitive engines operating at 100%</div>
+          <div>[SYS-HYPE]: Instagram viral vectors loaded</div>
+          <div>[SYS-LANG]: Multi-script semantic maps ready</div>
+        </div>
+      </div>
+
+      <!-- Business Details Form -->
+      <form id="generator-form" onsubmit="event.preventDefault();">
+        
+        <!-- Business Name Input -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label for="business-name">
+            Business/Brand Name
+            <span class="required">*</span>
+          </label>
+          <input type="text" id="business-name" placeholder="e.g. Bella Vita Salon, Gourmet Bites" required autocomplete="off">
+        </div>
+
+        <!-- Description Input -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label for="business-description">
+            Product/Service Description
+            <span class="required">*</span>
+          </label>
+          <textarea id="business-description" placeholder="e.g. Luxury hair coloring, organic coffee and vegan cakes baked fresh daily, boutique fashion items..." required></textarea>
+        </div>
+
+        <!-- Target Audience Input -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label for="target-audience">
+            Target Audience
+          </label>
+          <input type="text" id="target-audience" placeholder="e.g. Brides & fashion lovers, Gen Z college students, busy moms" autocomplete="off">
+        </div>
+
+        <!-- Tone Selector (Option Cards) -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label>Select Caption Tone</label>
+          <div class="options-grid" id="tone-grid">
+            <div class="option-card selected" data-tone="Casual">
+              <span class="emoji">☕</span>
+              <span>Casual</span>
+            </div>
+            <div class="option-card" data-tone="Professional">
+              <span class="emoji">💼</span>
+              <span>Professional</span>
+            </div>
+            <div class="option-card" data-tone="Funny">
+              <span class="emoji">🤣</span>
+              <span>Funny</span>
+            </div>
+            <div class="option-card" data-tone="Emotional">
+              <span class="emoji">❤️</span>
+              <span>Emotional</span>
+            </div>
+            <div class="option-card" data-tone="Promotional">
+              <span class="emoji">📢</span>
+              <span>Promo</span>
+            </div>
+            <div class="option-card" data-tone="Storytelling">
+              <span class="emoji">📖</span>
+              <span>Story</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label for="language-select">Language</label>
+          <select id="language-select">
+            <option value="English" selected>🇺🇸 English</option>
+            <option value="Hindi">🇮🇳 Hindi (हिंदी)</option>
+            <option value="Telugu">🇮🇳 Telugu (తెలుగు)</option>
+            <option value="Hinglish">🇮🇳 Hinglish (Hindi + English)</option>
+          </select>
+        </div>
+
+        <!-- AI Model Advanced Toggle -->
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="model-select">Cognitive AI Core</label>
+          <select id="model-select">
+            <option value="hyperion" selected>🌀 Hyperion-70B (Max Creativity)</option>
+            <option value="synapse">🧠 Synapse-Nemotron (Deep Market Analysis)</option>
+            <option value="apex">⚡ Apex-8B (Ultra-Speed Copy)</option>
+          </select>
+        </div>
+
+        <!-- Action Buttons -->
+        <button type="button" class="btn-generate" id="btn-generate-captions">
+          <i data-lucide="sparkles"></i>
+          <span>Generate 10 Captions</span>
+        </button>
+
+      </form>
+
+      <!-- Sidebar Utilities Footer -->
+      <div class="sidebar-footer">
+        <button type="button" class="btn-settings" id="btn-open-settings">
+          <i data-lucide="key-round"></i>
+          <span>Nvidia NIM API Key</span>
+        </button>
+        <div class="api-key-status" id="key-status-display">
+          <span class="status-dot inactive" id="key-status-dot"></span>
+          <span id="key-status-text" style="color: var(--text-muted);">API Key Missing</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Output Dashboard -->
+    <main class="dashboard">
+      
+      <!-- Dashboard Header -->
+      <div class="dashboard-header">
+        <div class="dashboard-title">
+          <h2>Captions Dashboard</h2>
+          <p id="dashboard-subtitle">Generate high-converting copy using state-of-the-art models</p>
+        </div>
+        
+        <div class="dashboard-actions">
+          <button type="button" class="fav-toggle-btn" id="btn-toggle-favorites">
+            <i data-lucide="heart"></i>
+            <span>View Favorites (<span id="favorites-count">0</span>)</span>
+          </button>
+          
+          <button type="button" class="btn-secondary" id="btn-regenerate-captions" disabled style="display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 8px;">
+            <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i>
+            <span>Regenerate</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashboard Body Views -->
+      
+      <!-- 1. EMPTY STATE -->
+      <div class="empty-state view-empty dashboard-view active" id="empty-state-view">
+        <div class="hologram-container">
+          <div class="holo-orb"></div>
+          <div class="holo-ring-1"></div>
+          <div class="holo-ring-2"></div>
+          <div class="holo-scanner"></div>
+          <div class="holo-node holo-node-1"></div>
+          <div class="holo-node holo-node-2"></div>
+          <div class="holo-node holo-node-3"></div>
+        </div>
+        <h3>Initialize AI Copywriter</h3>
+        <p>Input your brand profile on the left, activate the <strong>Cognitive AI Core</strong>, and receive 10 custom, viral Instagram captions crafted by our advanced linguistic engine.</p>
+        <button type="button" class="btn-primary" id="btn-empty-generate" style="display: flex; align-items: center; gap: 0.5rem; border-radius: 12px; padding: 0.8rem 1.5rem;">
+          <i data-lucide="sparkles"></i>
+          <span>Initialize Generator</span>
+        </button>
+      </div>
+
+      <!-- 2. LOADING STATE WITH STEPS -->
+      <div class="loading-state view-loading dashboard-view" id="loading-state-view">
+        <div class="loading-spinner-container">
+          <div class="loading-outer-ring"></div>
+          <div class="loading-inner-ring"></div>
+          <i class="loading-icon-pulse" data-lucide="sparkles" style="width: 32px; height: 32px;"></i>
+        </div>
+        <h3>InstaCaption AI is crafting your copy...</h3>
+        
+        <!-- Loading Checklist steps -->
+        <div class="loading-steps">
+          <div class="loading-step" id="step-1">
+            <div class="step-indicator"></div>
+            <span>[SYNC]: Interfacing with Cognitive Node...</span>
+          </div>
+          <div class="loading-step" id="step-2">
+            <div class="step-indicator"></div>
+            <span>[SCAN]: Analyzing product description vectors...</span>
+          </div>
+          <div class="loading-step" id="step-3">
+            <div class="step-indicator"></div>
+            <span>[SYNTH]: Structuring 10 distinct caption variations...</span>
+          </div>
+          <div class="loading-step" id="step-4">
+            <div class="step-indicator"></div>
+            <span>[HYPE]: Injecting viral hashtag clusters...</span>
+          </div>
+          <div class="loading-step" id="step-5">
+            <div class="step-indicator"></div>
+            <span>[READY]: Polishing typography and rendering matrices...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CAPTIONS GRID DISPLAY -->
+      <div class="captions-grid view-grid dashboard-view" id="captions-grid-view">
+        <!-- Javascript will inject 10 custom cards here dynamically -->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- API SETTINGS MODAL -->
+  <div class="modal-overlay" id="api-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="key-round" style="color: var(--insta-pink);"></i>
+          <span>Nvidia NIM Settings</span>
+        </h3>
+        <button class="modal-close-btn" id="btn-close-api-modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="api-instruction-card">
+          <strong>How to get a Free Nvidia NIM API Key:</strong>
+          <ol>
+            <li>Go to <a href="https://build.nvidia.com/" target="_blank">NVIDIA API Catalog <i data-lucide="external-link" style="width: 12px; height: 12px; display: inline;"></i></a></li>
+            <li>Sign up or sign in to your NVIDIA developer account. You get <strong>1000 free API credits</strong> instantly.</li>
+            <li>Search for <strong>Llama-3.1-70b-instruct</strong> or any other model.</li>
+            <li>Click <strong>"Get API Key"</strong> and copy the token.</li>
+            <li>Paste your key below. It will be stored safely in your browser.</li>
+          </ol>
+        </div>
+
+        <div class="form-group">
+          <label for="api-key-input">
+            NVIDIA NIM API Key
+          </label>
+          <div style="position: relative;">
+            <input type="password" id="api-key-input" placeholder="nvapi-..." autocomplete="off" style="padding-right: 2.5rem;">
+            <button type="button" id="btn-toggle-key-visibility" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer;">
+              <i data-lucide="eye" id="eye-icon"></i>
+            </button>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+            Your key is saved locally and never sent to any server except directly to NVIDIA's secure API.
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btn-cancel-api">Cancel</button>
+        <button class="btn-primary" id="btn-save-api">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM POST PREVIEW SIMULATOR MODAL -->
+  <div class="modal-overlay" id="preview-modal">
+    <div class="modal-content" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="smartphone" style="color: var(--insta-purple);"></i>
+          <span>Instagram Post Live Preview</span>
+        </h3>
+        <button class="modal-close-btn" id="btn-close-preview-modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 1rem; background: #000;">
+        
+        <!-- Live Simulated Phone Mockup -->
+        <div class="phone-mockup-wrapper">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              
+              <!-- Mock Status Bar -->
+              <div class="phone-status-bar">
+                <span>9:41</span>
+                <div style="display: flex; gap: 0.25rem; align-items: center;">
+                  <i data-lucide="signal" style="width: 10px; height: 10px;"></i>
+                  <i data-lucide="wifi" style="width: 10px; height: 10px;"></i>
+                  <i data-lucide="battery" style="width: 12px; height: 12px;"></i>
+                </div>
+              </div>
+
+              <!-- Post Header -->
+              <div class="insta-post-header">
+                <div class="insta-user-info">
+                  <div class="insta-avatar">
+                    <div class="insta-avatar-inner">
+                      <span id="preview-user-initials">BC</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="insta-username" id="preview-username">business_name</span>
+                    <span class="insta-location">Sponsored</span>
+                  </div>
+                </div>
+                <button class="insta-action-btn">
+                  <i data-lucide="more-horizontal" style="width: 18px; height: 18px;"></i>
+                </button>
+              </div>
+
+              <!-- Post Image (Interactive Upload Preview) -->
+              <div class="insta-post-image-container" id="post-image-container">
+                <input type="file" id="preview-image-upload" accept="image/*" style="display: none;">
+                <img id="preview-post-img" src="" alt="Uploaded Instagram Image">
+                <div class="image-upload-prompt" id="image-upload-prompt">
+                  <i data-lucide="image-plus"></i>
+                  <span>Tap to upload a product photo</span>
+                  <span style="font-size: 0.65rem; opacity: 0.7;">(1:1 square crop works best)</span>
+                </div>
+              </div>
+
+              <!-- Post Actions -->
+              <div class="insta-post-actions">
+                <div class="insta-actions-left">
+                  <button class="insta-action-btn" id="preview-btn-like">
+                    <i data-lucide="heart" style="width: 24px; height: 24px; color: white;" id="preview-heart-icon"></i>
+                  </button>
+                  <button class="insta-action-btn">
+                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                  </button>
+                  <button class="insta-action-btn">
+                    <i data-lucide="send" style="width: 24px; height: 24px;"></i>
+                  </button>
+                </div>
+                <button class="insta-action-btn">
+                  <i data-lucide="bookmark" style="width: 24px; height: 24px;"></i>
+                </button>
+              </div>
+
+              <!-- Post Likes -->
+              <div class="insta-post-likes">
+                <span id="preview-likes-count">1,248</span> likes
+              </div>
+
+              <!-- Post Caption (Interactive read more) -->
+              <div class="insta-post-caption-area">
+                <span class="insta-caption-username" id="preview-caption-username">business_name</span>
+                <span class="insta-caption-text" id="preview-caption-text">This is where the hook and body text will reside...</span>
+                <div style="margin-top: 0.4rem;">
+                  <span id="preview-caption-cta" class="insta-caption-cta" style="color: #60a5fa; font-weight: 600;">Check it out today!</span>
+                </div>
+                <span class="insta-caption-tags" id="preview-caption-hashtags">#aesthetic #viral #ai</span>
+                <span class="insta-post-time">1 hour ago</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer" style="background: #121118;">
+        <button class="btn-primary" id="btn-close-preview-footer" style="width: 100%;">Looks Amazing!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- App JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>
