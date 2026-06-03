@@ -18,6 +18,24 @@
 </head>
 <body>
 
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-logo">
+      <div class="logo-icon-wrapper">
+        <img src="img/logo.png" alt="InstaCaption AI Logo" class="brand-logo-img">
+      </div>
+      <div class="logo-text">
+        <h2>InstaCaption AI</h2>
+        <span class="badge-premium">PREMIUM GENERATOR ACTIVE</span>
+      </div>
+    </div>
+    <div class="header-nav">
+      <a href="#" class="nav-link active"><i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Generator</a>
+      <a href="#" class="nav-link"><i data-lucide="library" style="width: 14px; height: 14px;"></i> Library</a>
+      <a href="#" class="nav-link"><i data-lucide="bar-chart-3" style="width: 14px; height: 14px;"></i> Analytics</a>
+    </div>
+  </header>
+
   <div class="app-container tab-sidebar">
     
     <!-- Mobile Navigation Tabs -->
@@ -31,19 +49,14 @@
         <span>Captions</span>
         <span class="count-badge" id="mobile-badge" style="display: none;">10</span>
       </button>
+      <button type="button" class="mobile-tab" data-tab="preview">
+        <i data-lucide="smartphone"></i>
+        <span>Preview</span>
+      </button>
     </div>
     
     <!-- Sidebar / Configuration Controls -->
     <aside class="sidebar">
-      <div class="logo-section">
-        <div class="logo-icon-wrapper">
-          <img src="img/logo.png" alt="InstaCaption AI Logo" class="brand-logo-img">
-        </div>
-        <div class="logo-text">
-          <h1>InstaCaption AI</h1>
-          <span>GENERATIVE COPYWRITING</span>
-        </div>
-      </div>
 
       <!-- Diagnostics console (AI feel) -->
       <div class="diagnostics-console">
@@ -245,6 +258,109 @@
 
     </main>
 
+    <!-- INSTAGRAM POST PREVIEW SIMULATOR PANEL (3rd Column on Desktop, Modal on Mobile) -->
+    <div class="modal-overlay" id="preview-modal">
+      <div class="modal-content" style="max-width: 420px;">
+        <div class="modal-header">
+          <h3>
+            <i data-lucide="smartphone" style="color: var(--insta-purple);"></i>
+            <span>Instagram Post Live Preview</span>
+          </h3>
+          <button class="modal-close-btn" id="btn-close-preview-modal">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 1rem; background: #000;">
+          
+          <!-- Live Simulated Phone Mockup -->
+          <div class="phone-mockup-wrapper">
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                
+                <!-- Mock Status Bar -->
+                <div class="phone-status-bar">
+                  <span>9:41</span>
+                  <div style="display: flex; gap: 0.25rem; align-items: center;">
+                    <i data-lucide="signal" style="width: 10px; height: 10px;"></i>
+                    <i data-lucide="wifi" style="width: 10px; height: 10px;"></i>
+                    <i data-lucide="battery" style="width: 12px; height: 12px;"></i>
+                  </div>
+                </div>
+
+                <!-- Post Header -->
+                <div class="insta-post-header">
+                  <div class="insta-user-info">
+                    <div class="insta-avatar">
+                      <div class="insta-avatar-inner">
+                        <span id="preview-user-initials">BC</span>
+                      </div>
+                    </div>
+                    <div>
+                      <span class="insta-username" id="preview-username">business_name</span>
+                      <span class="insta-location">Sponsored</span>
+                    </div>
+                  </div>
+                  <button class="insta-action-btn">
+                    <i data-lucide="more-horizontal" style="width: 18px; height: 18px;"></i>
+                  </button>
+                </div>
+
+                <!-- Post Image (Interactive Upload Preview) -->
+                <div class="insta-post-image-container" id="post-image-container">
+                  <input type="file" id="preview-image-upload" accept="image/*" style="display: none;">
+                  <img id="preview-post-img" src="" alt="Uploaded Instagram Image">
+                  <div class="image-upload-prompt" id="image-upload-prompt">
+                    <i data-lucide="image-plus"></i>
+                    <span>Tap to upload a product photo</span>
+                    <span style="font-size: 0.65rem; opacity: 0.7;">(1:1 square crop works best)</span>
+                  </div>
+                </div>
+
+                <!-- Post Actions -->
+                <div class="insta-post-actions">
+                  <div class="insta-actions-left">
+                    <button class="insta-action-btn" id="preview-btn-like">
+                      <i data-lucide="heart" style="width: 24px; height: 24px; color: white;" id="preview-heart-icon"></i>
+                    </button>
+                    <button class="insta-action-btn">
+                      <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                    </button>
+                    <button class="insta-action-btn">
+                      <i data-lucide="send" style="width: 24px; height: 24px;"></i>
+                    </button>
+                  </div>
+                  <button class="insta-action-btn">
+                    <i data-lucide="bookmark" style="width: 24px; height: 24px;"></i>
+                  </button>
+                </div>
+
+                <!-- Post Likes -->
+                <div class="insta-post-likes">
+                  <span id="preview-likes-count">1,248</span> likes
+                </div>
+
+                <!-- Post Caption (Interactive read more) -->
+                <div class="insta-post-caption-area">
+                  <span class="insta-caption-username" id="preview-caption-username">business_name</span>
+                  <span class="insta-caption-text" id="preview-caption-text">This is where the hook and body text will reside...</span>
+                  <div style="margin-top: 0.4rem;">
+                    <span id="preview-caption-cta" class="insta-caption-cta" style="color: #60a5fa; font-weight: 600;">Check it out today!</span>
+                  </div>
+                  <span class="insta-caption-tags" id="preview-caption-hashtags">#aesthetic #viral #ai</span>
+                  <span class="insta-post-time">1 hour ago</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background: #121118;">
+          <button class="btn-primary" id="btn-close-preview-footer" style="width: 100%;">Looks Amazing!</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- API SETTINGS MODAL -->
@@ -289,109 +405,6 @@
       <div class="modal-footer">
         <button class="btn-secondary" id="btn-cancel-api">Cancel</button>
         <button class="btn-primary" id="btn-save-api">Save Settings</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- INSTAGRAM POST PREVIEW SIMULATOR MODAL -->
-  <div class="modal-overlay" id="preview-modal">
-    <div class="modal-content" style="max-width: 420px;">
-      <div class="modal-header">
-        <h3>
-          <i data-lucide="smartphone" style="color: var(--insta-purple);"></i>
-          <span>Instagram Post Live Preview</span>
-        </h3>
-        <button class="modal-close-btn" id="btn-close-preview-modal">
-          <i data-lucide="x"></i>
-        </button>
-      </div>
-      <div class="modal-body" style="padding: 1rem; background: #000;">
-        
-        <!-- Live Simulated Phone Mockup -->
-        <div class="phone-mockup-wrapper">
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              
-              <!-- Mock Status Bar -->
-              <div class="phone-status-bar">
-                <span>9:41</span>
-                <div style="display: flex; gap: 0.25rem; align-items: center;">
-                  <i data-lucide="signal" style="width: 10px; height: 10px;"></i>
-                  <i data-lucide="wifi" style="width: 10px; height: 10px;"></i>
-                  <i data-lucide="battery" style="width: 12px; height: 12px;"></i>
-                </div>
-              </div>
-
-              <!-- Post Header -->
-              <div class="insta-post-header">
-                <div class="insta-user-info">
-                  <div class="insta-avatar">
-                    <div class="insta-avatar-inner">
-                      <span id="preview-user-initials">BC</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="insta-username" id="preview-username">business_name</span>
-                    <span class="insta-location">Sponsored</span>
-                  </div>
-                </div>
-                <button class="insta-action-btn">
-                  <i data-lucide="more-horizontal" style="width: 18px; height: 18px;"></i>
-                </button>
-              </div>
-
-              <!-- Post Image (Interactive Upload Preview) -->
-              <div class="insta-post-image-container" id="post-image-container">
-                <input type="file" id="preview-image-upload" accept="image/*" style="display: none;">
-                <img id="preview-post-img" src="" alt="Uploaded Instagram Image">
-                <div class="image-upload-prompt" id="image-upload-prompt">
-                  <i data-lucide="image-plus"></i>
-                  <span>Tap to upload a product photo</span>
-                  <span style="font-size: 0.65rem; opacity: 0.7;">(1:1 square crop works best)</span>
-                </div>
-              </div>
-
-              <!-- Post Actions -->
-              <div class="insta-post-actions">
-                <div class="insta-actions-left">
-                  <button class="insta-action-btn" id="preview-btn-like">
-                    <i data-lucide="heart" style="width: 24px; height: 24px; color: white;" id="preview-heart-icon"></i>
-                  </button>
-                  <button class="insta-action-btn">
-                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
-                  </button>
-                  <button class="insta-action-btn">
-                    <i data-lucide="send" style="width: 24px; height: 24px;"></i>
-                  </button>
-                </div>
-                <button class="insta-action-btn">
-                  <i data-lucide="bookmark" style="width: 24px; height: 24px;"></i>
-                </button>
-              </div>
-
-              <!-- Post Likes -->
-              <div class="insta-post-likes">
-                <span id="preview-likes-count">1,248</span> likes
-              </div>
-
-              <!-- Post Caption (Interactive read more) -->
-              <div class="insta-post-caption-area">
-                <span class="insta-caption-username" id="preview-caption-username">business_name</span>
-                <span class="insta-caption-text" id="preview-caption-text">This is where the hook and body text will reside...</span>
-                <div style="margin-top: 0.4rem;">
-                  <span id="preview-caption-cta" class="insta-caption-cta" style="color: #60a5fa; font-weight: 600;">Check it out today!</span>
-                </div>
-                <span class="insta-caption-tags" id="preview-caption-hashtags">#aesthetic #viral #ai</span>
-                <span class="insta-post-time">1 hour ago</span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="modal-footer" style="background: #121118;">
-        <button class="btn-primary" id="btn-close-preview-footer" style="width: 100%;">Looks Amazing!</button>
       </div>
     </div>
   </div>

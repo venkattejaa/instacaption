@@ -79,13 +79,8 @@ function initApplication() {
       tab.classList.add('active');
       
       // Update app container class
-      if (targetTab === 'sidebar') {
-        appContainer.classList.remove('tab-dashboard');
-        appContainer.classList.add('tab-sidebar');
-      } else {
-        appContainer.classList.remove('tab-sidebar');
-        appContainer.classList.add('tab-dashboard');
-      }
+      appContainer.classList.remove('tab-sidebar', 'tab-dashboard', 'tab-preview');
+      appContainer.classList.add(`tab-${targetTab}`);
     });
   });
 
@@ -100,6 +95,13 @@ function initApplication() {
     const sidebarTabBtn = document.querySelector('.mobile-tab[data-tab="sidebar"]');
     if (sidebarTabBtn) {
       sidebarTabBtn.click();
+    }
+  }
+
+  function switchToPreviewTab() {
+    const previewTabBtn = document.querySelector('.mobile-tab[data-tab="preview"]');
+    if (previewTabBtn) {
+      previewTabBtn.click();
     }
   }
 
@@ -1062,6 +1064,7 @@ Generate 10 outstanding, conversion-optimized Instagram captions matching this d
 
     // Open Modal
     previewModal.classList.add('active');
+    switchToPreviewTab();
   }
 
   function closePreviewModal() {
